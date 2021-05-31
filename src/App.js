@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { lazy, Suspense } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+import FallbackPage from "./pages/Fallback";
+
+const LoginPage = lazy(() => import("./pages/Login"));
+const RegisterPage = lazy(() => import("./pages/Register"));
+const DashboardPage = lazy(() => import("./pages/Dashboard"));
+const NotFoundPage = lazy(() => import("./pages/NotFound"));
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Suspense fallback={<FallbackPage />}>
+        <Switch>
+          <Route path="/" exact component={LoginPage} />
+          <Route path="/login" exact component={LoginPage} />
+          <Route path="/register" exact component={RegisterPage} />
+          <Route path="/dashboard" exact component={DashboardPage} />
+          <Route component={NotFoundPage} />
+        </Switch>
+      </Suspense>
+    </Router>
   );
 }
 
