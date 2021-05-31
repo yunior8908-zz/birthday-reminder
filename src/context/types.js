@@ -1,0 +1,2 @@
+export const AUTH_USER_SUCCESS = "AUTH_USER_SUCCESS";
+export const AUTH_USER_CLEAR = "AUTH_USER_CLEAR";
