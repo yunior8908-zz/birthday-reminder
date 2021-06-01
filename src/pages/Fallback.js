@@ -1,11 +1,5 @@
-import { Box, CircularProgress } from "@material-ui/core";
-
 function FallbackPage() {
-  return (
-    <Box>
-      <CircularProgress />
-    </Box>
-  );
+  return <div>{/* <CircularProgress /> */}</div>;
 }
 
 export default FallbackPage;
